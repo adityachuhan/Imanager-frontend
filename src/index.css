@@ -1,13 +1,92 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.root {
+    width: 100vw
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+body {
+    font-size: 21px;
+    font-family: sans-serif;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info {
+    width: 52%;
+}
+
+.todoitem {
+    margin: 1px 0px;
+    padding: 3px 25px;
+}
+
+.todoitem:hover {
+    transform: scale(1.01);
+}
+
+.status {
+    text-align: center;
+    font-size: 18px;
+    width: 137px;
+    padding: 2px 0px;
+    margin: 3px 0px;
+    border-radius: 32px;
+    cursor: pointer;
+}
+
+.work {
+    width: 42%;
+}
+
+.add {
+    position: absolute;
+    right: 39px;
+    bottom: 30px;
+}
+
+
+/* css for diary section */
+
+.diarybox {
+    width: 25%;
+    height: 89vh;
+    border-right: 1px solid;
+    overflow: auto;
+}
+
+.diarydisplay {
+    width: 75%;
+}
+
+.lifthover:hover {
+    padding-bottom: 3px;
+}
+
+
+/* css for files section */
+
+.filehover:hover {
+    box-shadow: 2px 2px 9px #3a3a38;
+}
+
+
+/* css for home section */
+
+#home {
+    background-image: url(../public/home.jpg);
+    background-size: cover;
 }
