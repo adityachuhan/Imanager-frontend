@@ -23,7 +23,7 @@ const [progress, setprogress] = useState(0)
     return response
    } 
 const fetchTodo = async()=>{
-    const response = await Fetch('http://localhost:5000/api/notes/fetchalltodos')
+    const response = await Fetch('https://imanager-api-z2gy.onrender.com/api/notes/fetchalltodos')
     if(!(response.status == 401)){
       const parsedata = await response.json()
       setTodo(parsedata)
@@ -95,7 +95,7 @@ const fetchTodo = async()=>{
   // function to Update To-do
    const updateTodo = async (state,id)=>{
     setprogress(30)
-         const response = await fetch(`http://localhost:5000/api/notes/updatetodo/${id}`,{
+         const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/notes/updatetodo/${id}`,{
           method:"PUT",
           headers:{
             'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ const fetchTodo = async()=>{
   }
   // function to delete To-do
   const DeleteTodo = async (id)=>{
-         const response = await  Delete(`http://localhost:5000/api/notes/deletetodo/${id}`) // this is the delete function with url encoded with id of the todo that has to be deleted
+         const response = await  Delete(`https://imanager-api-z2gy.onrender.com/api/notes/deletetodo/${id}`) // this is the delete function with url encoded with id of the todo that has to be deleted
         //  This iteration is to make alert component appear as per the status given by above function
          if((response.status == 404 || response.status == 401  )){
            setalert({status:true,message:'Internal error - please try again later',color:'danger'})
@@ -140,7 +140,7 @@ const fetchTodo = async()=>{
   // function to add to-do
 const AddTodo = async(todo)=>{
   setprogress(30)
- const response = await fetch('http://localhost:5000/api/notes/addtodo',{
+ const response = await fetch('https://imanager-api-z2gy.onrender.com/api/notes/addtodo',{
   method:'POST',
   headers:{
     'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ const AddTodo = async(todo)=>{
   // fecthcall to fetch all diary of the user
   const fetchDiary = async()=>{
     setprogress(30)
-    const response = await Fetch('http://localhost:5000/api/diary/fetchDiary')
+    const response = await Fetch('https://imanager-api-z2gy.onrender.com/api/diary/fetchDiary')
     if(!(response.status == 401)){
       const ParsediaryData = await response.json()
     setDiary(ParsediaryData)
@@ -174,7 +174,7 @@ const AddTodo = async(todo)=>{
 //function to  delete Diary
   const deleteDiary = async(id)=>{
     setprogress(30)
-    const response = await Delete(`http://localhost:5000/api/diary/deleteDiary/${id}`)
+    const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/diary/deleteDiary/${id}`)
       if((response.status == 404 || response.status == 401  )){
         setalert({status:true,message:'Internal error - please try again later',color:'danger'})
        }
@@ -183,7 +183,7 @@ const AddTodo = async(todo)=>{
   // function to add Diary Note
   const addDiaryNote = async(diaryNote)=>{
     setprogress(30)
-    const response = await fetch('http://localhost:5000/api/diary/addDiary',{
+    const response = await fetch('https://imanager-api-z2gy.onrender.com/api/diary/addDiary',{
       method:'POST',
       headers:{
         'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ const AddTodo = async(todo)=>{
   // function to update Diary
   const diaryUpdate =async ()=>{
     setprogress(30)
-    const response = await fetch(`http://localhost:5000/api/diary/updateDiary/${currentdiary.id}`,{
+    const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/diary/updateDiary/${currentdiary.id}`,{
       method:'PUT',
       headers:{
         'Content-Type': 'application/json',
@@ -218,7 +218,7 @@ const AddTodo = async(todo)=>{
    const [file, setfile] = useState([])
 
   const fetchfileinfo = async ()=>{
-  const response = await Fetch('http://localhost:5000/api/file/filesinfo')
+  const response = await Fetch('https://imanager-api-z2gy.onrender.com/api/file/filesinfo')
   if((response.status == 401 )){
     setalert({status:true,message:'Please authenticate yourself',color:'danger'})
   }else if(response.status == 404){
@@ -231,7 +231,7 @@ const AddTodo = async(todo)=>{
 // function to delete File
 const deleteFile = async(id)=>{
   setprogress(50)
-  const response = await Delete(`http://localhost:5000/api/file/filedelete/${id}`)
+  const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`)
 }
 // this state is used to reload navabar after logging in/ signing up
 const [relod, setrelod] = useState(false)

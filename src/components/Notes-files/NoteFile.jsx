@@ -28,7 +28,7 @@ const NoteFile = (props) => {
   return (
     <div className='mx-4'>
       <div id='card' className="card filehover my-2" onMouseOut={mouseleave} onMouseOver={mousehover} style={{width: "18rem",backgroundColor:" #adc9c1"}}>
-        <a style={{textDecoration:"none",color:"black",cursor:"default"}}  target="_blank" href = {`http://localhost:5000/api/file/fileview/${fileinfo.filename}`}>
+        <a style={{textDecoration:"none",color:"black",cursor:"default"}}  target="_blank" href = {`https://imanager-api-z2gy.onrender.com/api/file/fileview/${fileinfo.filename}`}>
           <div className="card-body">
               <div className='d-flex justify-content-between'>
                 {fontdecider(fileinfo.contentType)}

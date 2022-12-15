@@ -18,21 +18,7 @@ const Notes = () => {
     fetchfileinfo()
       // eslint-disable-next-line
     }, [])
-    const UploadFileClick= async(e)=>{
-      e.preventDefault();
-     const uploadfile = document.getElementById('file').files[0];
-     const filedata = new FormData()
-     filedata.append('file',uploadfile)
-    console.log(uploadfile)
-    const reaponse = await axios({
-      url:'http://localhost:5000/api/file/addfile',
-      method:"POST",
-      headers:{
-        'Content-Type': 'application/json',
-            'auth-token':authtoken
-      }
-    })
-   }
+   
    if(user){
     
   return (
@@ -55,7 +41,7 @@ const Notes = () => {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-              <form method="post" action= {`http://localhost:5000/api/file/addfile/${authtoken}`}  id="formFile"  encType="multipart/form-data">
+              <form method="post" action= {`https://imanager-api-z2gy.onrender.com/api/file/addfile/${authtoken}`}  id="formFile"  encType="multipart/form-data">
                 <input type="file" name="file" id="file"/>
                 <input className="my-2"  type="submit" value="submit"/>
               </form>

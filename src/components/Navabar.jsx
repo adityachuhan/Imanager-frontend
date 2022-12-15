@@ -15,7 +15,7 @@ if(relod===true){
 // saving user detail and makin fetching call to get uder information
   const [userdetail, setuserdetail] = useState({name: "",})
   const GetuserDetail = async()=>{
-     const response = await fetch('http://localhost:5000/api/auth/getuser',{
+     const response = await fetch('https://imanager-api-z2gy.onrender.com/api/auth/getuser',{
       method:"POST",
       headers:{
         'Content-Type': 'application/json',

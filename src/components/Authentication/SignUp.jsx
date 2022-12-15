@@ -22,7 +22,7 @@ const SignUp = () => {
     // Iteration for making sure correct required length of Name and passward
     if (signcredent.name.length >= 4 && signcredent.passward.length >= 6) {
       const response = await fetch(
-        "http://localhost:5000/api/auth/createuser",
+        "https://imanager-api-z2gy.onrender.com/api/auth/createuser",
         {
           method: "POST",
           headers: {
