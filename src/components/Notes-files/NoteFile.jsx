@@ -12,8 +12,8 @@ const NoteFile = (props) => {
 
     const context = useContext(noteContext)
     const {deleteFile,fetchfileinfo} = context
-   const handleDelete = ()=>{
-    deleteFile(fileinfo._id)
+   const handleDelete = async ()=>{
+    const response = await deleteFile(fileinfo._id)
     fetchfileinfo()
    }
    

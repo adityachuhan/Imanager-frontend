@@ -2,7 +2,6 @@ import React from 'react'
 import { useContext,useEffect } from 'react'
 import noteContext from '../../contex/notes/noteContext'
 import NoteFile from './NoteFile'
-import axios from 'axios'
 
 const Notes = () => {
 
