@@ -94,7 +94,6 @@ const fetchTodo = async()=>{
   }
   // function to Update To-do
    const updateTodo = async (state,id)=>{
-    setprogress(30)
          const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/notes/updatetodo/${id}`,{
           method:"PUT",
           headers:{
@@ -103,7 +102,6 @@ const fetchTodo = async()=>{
           },
           body:JSON.stringify({state})
          })
-        setprogress(60)
         fetchTodo();
   }
   // function to delete To-do
@@ -230,10 +228,8 @@ const AddTodo = async(todo)=>{
 }
 // function to delete File
 const deleteFile = async(id)=>{
-  setprogress(50)
   const newfileinfo = file.filter((file) => { return file._id !== id })
   setfile(newfileinfo)
-  setprogress(100)
   const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`);
 }
 // this state is used to reload navabar after logging in/ signing up
