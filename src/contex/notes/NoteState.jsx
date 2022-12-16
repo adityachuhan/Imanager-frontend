@@ -114,7 +114,7 @@ const fetchTodo = async()=>{
            }
          }  
          setTodo(newTodo);
-  }
+      }
   // function to delete To-do
   const DeleteTodo = async (id)=>{
          const newtodo = Todo.filter((todo) => { return todo._id !== id })
@@ -161,11 +161,14 @@ const AddTodo = async(todo)=>{
  setprogress(60)
  if((response.status == 404 || response.status == 401  )){
   setalert({status:true,message:'Internal server error - Please try again later',color:'danger'})
-}else{
-  const newtodo = await response.json()
-  setTodo(Todo.concat(newtodo))
 }
-setprogress(100)
+
+fetchTodo();
+// else{
+//   const newtodo = await response.json()
+//   setTodo(Todo.concat(newtodo))
+// }
+// setprogress(100)
 }
   // This part is for DIARY
   const [currentdiary, setcurrentdiary] = useState({
