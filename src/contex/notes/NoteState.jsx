@@ -232,7 +232,10 @@ const AddTodo = async(todo)=>{
 const deleteFile = async(id)=>{
   setprogress(50)
   const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`)
-  window.location.reload();  
+  setprogress(70)
+  const newfileinfo = notes.filter((file) => { return file._id !== id })
+  setfile(newfileinfo)
+  setprogress(100)
 }
 // this state is used to reload navabar after logging in/ signing up
 const [relod, setrelod] = useState(false)
