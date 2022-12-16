@@ -231,9 +231,9 @@ const AddTodo = async(todo)=>{
 // function to delete File
 const deleteFile = async(id)=>{
   setprogress(50)
-  const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`)
-  setprogress(70)
   const newfileinfo = file.filter((file) => { return file._id !== id })
+  setprogress(70)
+  const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`)
   setfile(newfileinfo)
   setprogress(100)
 }
