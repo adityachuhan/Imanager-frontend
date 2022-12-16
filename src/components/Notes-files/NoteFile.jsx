@@ -11,10 +11,10 @@ const NoteFile = (props) => {
     }
 
     const context = useContext(noteContext)
-    const {deleteFile} = context
+    const {deleteFile,fetchfileinfo} = context
    const handleDelete = ()=>{
-     deleteFile(fileinfo._id)
-     window.location.reload();
+    deleteFile(fileinfo._id)
+    fetchfileinfo()
    }
    
    const [display, setdisplay] = useState('none')

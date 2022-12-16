@@ -17,7 +17,7 @@ function App() {
   return (
     <>
     <NoteState>
-      <Router>
+      <Router basename='/'>
       <Navabar/>
       
       <Alert/>
