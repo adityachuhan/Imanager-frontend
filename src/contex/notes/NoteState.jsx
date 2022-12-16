@@ -89,12 +89,13 @@ const fetchTodo = async()=>{
         'auth-token':authtoken
       }
      })
-     setprogress(60)
+     setprogress(100)
      return response
   }
   // function to Update To-do
    const updateTodo = async (state,id)=>{
      setprogress(30)
+     
          const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/notes/updatetodo/${id}`,{
           method:"PUT",
           headers:{
@@ -103,17 +104,27 @@ const fetchTodo = async()=>{
           },
           body:JSON.stringify({state})
          })
-        fetchTodo();
+         let newTodo = JSON.parse(JSON.stringify(Todo))
+         // Logic to edit in client
+         for (let index = 0; index < newTodo.length; index++) {
+           const element = newTodo[index];
+           if (element._id === id) {
+            newTodo[index].state = state;
+             break; 
+           }
+         }  
+         setTodo(newTodo);
   }
   // function to delete To-do
   const DeleteTodo = async (id)=>{
+         const newtodo = Todo.filter((todo) => { return todo._id !== id })
+         setTodo(newtodo)
          const response = await  Delete(`https://imanager-api-z2gy.onrender.com/api/notes/deletetodo/${id}`) // this is the delete function with url encoded with id of the todo that has to be deleted
         //  This iteration is to make alert component appear as per the status given by above function
          if((response.status == 404 || response.status == 401  )){
            setalert({status:true,message:'Internal error - please try again later',color:'danger'})
           }
-
-         fetchTodo();// this is to fetch new updated todo list 
+        
   }
   // To delete old Todos
   const somefilter = (data)=>{
@@ -150,8 +161,11 @@ const AddTodo = async(todo)=>{
  setprogress(60)
  if((response.status == 404 || response.status == 401  )){
   setalert({status:true,message:'Internal server error - Please try again later',color:'danger'})
+}else{
+  const newtodo = await response.json()
+  setTodo(Todo.concat(newtodo))
 }
- fetchTodo();
+setprogress(100)
 }
   // This part is for DIARY
   const [currentdiary, setcurrentdiary] = useState({
@@ -233,7 +247,13 @@ const deleteFile = async(id)=>{
   const newfileinfo = file.filter((file) => { return file._id !== id })
   setfile(newfileinfo)
   setprogress(100)
-   const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`)
+   const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`,{
+    method:"DELETE",
+    headers:{
+      'Content-Type': 'application/json',
+      'auth-token':authtoken
+    }
+   })
 }
 // this state is used to reload navabar after logging in/ signing up
 const [relod, setrelod] = useState(false)
