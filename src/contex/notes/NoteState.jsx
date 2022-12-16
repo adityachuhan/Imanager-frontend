@@ -233,7 +233,7 @@ const deleteFile = async(id)=>{
   setprogress(50)
   const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`)
   setprogress(70)
-  const newfileinfo = notes.filter((file) => { return file._id !== id })
+  const newfileinfo = file.filter((file) => { return file._id !== id })
   setfile(newfileinfo)
   setprogress(100)
 }
