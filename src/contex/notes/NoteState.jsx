@@ -163,12 +163,11 @@ const AddTodo = async(todo)=>{
   setalert({status:true,message:'Internal server error - Please try again later',color:'danger'})
 }
 
-fetchTodo();
-// else{
-//   const newtodo = await response.json()
-//   setTodo(Todo.concat(newtodo))
-// }
-// setprogress(100)
+else{
+  const newtodo = await response.json()
+  setTodo(Todo.concat(newtodo))
+}
+setprogress(100)
 }
   // This part is for DIARY
   const [currentdiary, setcurrentdiary] = useState({

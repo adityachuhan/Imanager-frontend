@@ -22,7 +22,7 @@ const ref = useRef(null)
 const handleClick = (e)=>{
   e.preventDefault();
   AddTodo(Todo)
-  setTodo({work:" "})
+  setTodo({work:" ",date:"2022-12-16"})
   ref.current.click()
 }
 
