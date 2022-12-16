@@ -94,6 +94,7 @@ const fetchTodo = async()=>{
   }
   // function to Update To-do
    const updateTodo = async (state,id)=>{
+     setprogress(30)
          const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/notes/updatetodo/${id}`,{
           method:"PUT",
           headers:{
@@ -232,18 +233,12 @@ const deleteFile = async(id)=>{
   const newfileinfo = file.filter((file) => { return file._id !== id })
   setfile(newfileinfo)
   setprogress(100)
-  const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`,{
-    method:"DELETE",
-    headers:{
-      'Content-Type': 'application/json',
-      'auth-token':authtoken
-    }
-   })
+   const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/file/filedelete/${id}`)
 }
 // this state is used to reload navabar after logging in/ signing up
 const [relod, setrelod] = useState(false)
     return(
-        <noteContext.Provider value = {{alert,progress,relod,setrelod,setalert,AddTodo,fetchTodo,DeleteTodo,updateTodo,maindata ,Diary ,addDiaryNote,deleteDiary,fetchDiary,diaryUpdate,currentdiary,setcurrentdiary ,file,fetchfileinfo,deleteFile}}>
+        <noteContext.Provider value = {{alert,progress,relod,setprogress,setrelod,setalert,AddTodo,fetchTodo,DeleteTodo,updateTodo,maindata ,Diary ,addDiaryNote,deleteDiary,fetchDiary,diaryUpdate,currentdiary,setcurrentdiary ,file,fetchfileinfo,deleteFile}}>
          {props.children}
         </noteContext.Provider>
     )

@@ -4,7 +4,7 @@ import noteContext from '../../contex/notes/noteContext';
 const Login = () => {
 // constext api call and destructuring
     const context = useContext(noteContext)
-    const{ setrelod}  = context
+    const{setprogress, setrelod}  = context
 // this is for navingating user to homepage after logging in
     const navigate = useNavigate();
 // Usual method to store form data
@@ -14,6 +14,7 @@ const Login = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setprogress(50)
         const response = await fetch("https://imanager-api-z2gy.onrender.com/api/auth/login", {
             method: 'POST',
             headers: {
@@ -22,7 +23,8 @@ const Login = () => {
             body: JSON.stringify({email: logincredent.email, passward: logincredent.passward})
         });
         const json = await response.json()
-        console.log(json);
+        setprogress(70)
+       
         if (json.authToken){
             // Save the auth token and redirect
             localStorage.setItem('token', json.authToken); 
@@ -34,6 +36,7 @@ const Login = () => {
         else{
             alert("Invalid credentials");
         }
+        setprogress(100)
     }
   return (
     <div className='container'>

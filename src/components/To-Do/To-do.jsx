@@ -13,7 +13,7 @@ let user= false
   const context = useContext(noteContext)
   const {fetchTodo,AddTodo,maindata} = context;
 //  need to set the date
-const [Todo, setTodo] = useState({work:" ",date:"2022-03-19"})
+const [Todo, setTodo] = useState({work:" ",date:"2022-12-16"})
 const onChange = (e)=>{
   setTodo({...Todo, [e.target.name]: e.target.value})
 }
@@ -22,6 +22,7 @@ const ref = useRef(null)
 const handleClick = (e)=>{
   e.preventDefault();
   AddTodo(Todo)
+  setTodo({work:" "})
   ref.current.click()
 }
 

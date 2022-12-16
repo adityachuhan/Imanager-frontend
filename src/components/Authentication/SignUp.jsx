@@ -15,12 +15,13 @@ const SignUp = () => {
   };
 //   using context api and desturctring
   const context = useContext(noteContext)
-  const{ setrelod}  = context
+  const{setprogress, setrelod}  = context
 //   function to run after submitting the form
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Iteration for making sure correct required length of Name and passward
     if (signcredent.name.length >= 4 && signcredent.passward.length >= 6) {
+      setprogress(30)
       const response = await fetch(
         "https://imanager-api-z2gy.onrender.com/api/auth/createuser",
         {
@@ -35,11 +36,13 @@ const SignUp = () => {
           }),
         }
       );
+      setprogress(50)
       const json = await response.json();
         // Save the auth token and redirect
         localStorage.setItem("token", json.authToken);
         // reloding the Navabar component after signing up
         setrelod(true);
+        setprogress(100)
         navigate("/");
     } else {
       alert(
