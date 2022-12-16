@@ -105,7 +105,7 @@ const fetchTodo = async()=>{
        }
      }  
      setTodo(newTodo);
-     
+     setprogress(100)
          const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/notes/updatetodo/${id}`,{
           method:"PUT",
           headers:{
@@ -188,12 +188,15 @@ setprogress(100)
 //function to  delete Diary
   const deleteDiary = async(id)=>{
     setprogress(30)
+    const newdiary = Diary.filter((diary) => { return diary._id !== id })
+    setDiary(newdiary)
+    setprogress(100)
     const response = await Delete(`https://imanager-api-z2gy.onrender.com/api/diary/deleteDiary/${id}`)
       if((response.status == 404 || response.status == 401  )){
         setalert({status:true,message:'Internal error - please try again later',color:'danger'})
        }
-      fetchDiary();       
-  }
+
+      }
   // function to add Diary Note
   const addDiaryNote = async(diaryNote)=>{
     setprogress(30)
@@ -208,12 +211,26 @@ setprogress(100)
     setprogress(60)
     if((response.status == 404 || response.status == 401  )){
       setalert({status:true,message:'Internal server error - Please try again later',color:'danger'})
+    }else{
+      const newdiary = await response.json()
+      setTodo(Diary.concat(newdiary))
     }
-    fetchDiary();    
+    setprogress(100)
   }
   // function to update Diary
   const diaryUpdate =async ()=>{
     setprogress(30)
+    let newdiary = JSON.parse(JSON.stringify(Diary))
+    // Logic to edit in client
+    for (let index = 0; index < newdiary.length; index++) {
+      const element = newdiary[index];
+      if (element._id === id) {
+        newdiary[index].diaryNote = currentdiary.diaryNote;
+        break; 
+      }
+    }  
+    setTodo(newTodo);
+    setprogress(100)
     const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/diary/updateDiary/${currentdiary.id}`,{
       method:'PUT',
       headers:{
@@ -222,11 +239,6 @@ setprogress(100)
       },
       body:JSON.stringify({diaryNote:currentdiary.diaryNote})
     })
-    setprogress(60)
-    if((response.status == 404 || response.status == 401  )){
-      setalert({status:true,message:'Internal error - please try again later',color:'danger'})
-     }
-    fetchDiary();    
   }
   // THis section of NoteState is gonna used for Storing files
    const [file, setfile] = useState([])
