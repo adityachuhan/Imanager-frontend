@@ -95,6 +95,16 @@ const fetchTodo = async()=>{
   // function to Update To-do
    const updateTodo = async (state,id)=>{
      setprogress(30)
+     let newTodo = JSON.parse(JSON.stringify(Todo))
+     // Logic to edit in client
+     for (let index = 0; index < newTodo.length; index++) {
+       const element = newTodo[index];
+       if (element._id === id) {
+        newTodo[index].state = state;
+         break; 
+       }
+     }  
+     setTodo(newTodo);
      
          const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/notes/updatetodo/${id}`,{
           method:"PUT",
@@ -104,16 +114,7 @@ const fetchTodo = async()=>{
           },
           body:JSON.stringify({state})
          })
-         let newTodo = JSON.parse(JSON.stringify(Todo))
-         // Logic to edit in client
-         for (let index = 0; index < newTodo.length; index++) {
-           const element = newTodo[index];
-           if (element._id === id) {
-            newTodo[index].state = state;
-             break; 
-           }
-         }  
-         setTodo(newTodo);
+        
       }
   // function to delete To-do
   const DeleteTodo = async (id)=>{
@@ -161,9 +162,7 @@ const AddTodo = async(todo)=>{
  setprogress(60)
  if((response.status == 404 || response.status == 401  )){
   setalert({status:true,message:'Internal server error - Please try again later',color:'danger'})
-}
-
-else{
+}else{
   const newtodo = await response.json()
   setTodo(Todo.concat(newtodo))
 }
