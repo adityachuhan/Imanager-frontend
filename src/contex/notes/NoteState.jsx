@@ -224,12 +224,12 @@ setprogress(100)
     // Logic to edit in client
     for (let index = 0; index < newdiary.length; index++) {
       const element = newdiary[index];
-      if (element._id === id) {
+      if (element._id === currentdiary.id) {
         newdiary[index].diaryNote = currentdiary.diaryNote;
         break; 
       }
     }  
-    setTodo(newTodo);
+    setTodo(newdiary);
     setprogress(100)
     const response = await fetch(`https://imanager-api-z2gy.onrender.com/api/diary/updateDiary/${currentdiary.id}`,{
       method:'PUT',
