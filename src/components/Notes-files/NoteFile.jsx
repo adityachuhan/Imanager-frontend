@@ -14,7 +14,7 @@ const NoteFile = (props) => {
     const {deleteFile,fetchfileinfo} = context
    const handleDelete = async ()=>{
     deleteFile(fileinfo._id)
-    window.location.reload();
+    
    }
    
    const [display, setdisplay] = useState('none')
